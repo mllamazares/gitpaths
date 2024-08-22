@@ -33,7 +33,7 @@ type ApiResponse struct {
 func main() {
 	repoUrl := flag.String("u", "", "GitHub repository URL")
 	outputFile := flag.String("o", "", "Output file (optional)")
-	branch := flag.String("b", "master", "Branch name (optional, default: master)")
+	branch := flag.String("b", "master", "Branch name (optional)")
 	silent := flag.Bool("silent", false, "Omit banner and sysout printing")
 	help := flag.Bool("help", false, "Display help")
 
