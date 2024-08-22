@@ -6,11 +6,9 @@
 [![Star on GitHub](https://img.shields.io/github/stars/mllamazares/gitpaths.svg?style=social)](https://github.com/mllamazares/gitpaths/stargazers)
 [![Tweet](https://img.shields.io/twitter/url/https/github.com/mllamazares/gitpaths.svg?style=social)](https://twitter.com/intent/tweet?text=Check%20out%20gitpaths%21%20https%3A%2F%2Fgithub.com%2Fmllamazares%2Fgitpaths)
 
-`gitpaths` is a lightweight tool written in Go that retrieves the folder structure of a GitHub repository without needing to clone the entire content.
+`gitpaths`  a lightweight tool written in Go that retrieves the folder structure of a GitHub repository without needing to clone it, making it easier to create custom wordlists for fuzzing. Check out the [sample workflow](#sample-workflow).
 
 ![gitpaths demo screenshot](demo.png)
-
-💡 Ideal for quickly creating custom wordlists for fuzzing open-source apps or plugins, helping you identify which endpoints in the default repository are accessible. Check out the [sample workflow](#sample-workflow).
 
 ## Features
 
