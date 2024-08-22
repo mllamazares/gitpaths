@@ -8,29 +8,28 @@
 
 `gitpaths` is a lightweight tool written in Go that retrieves the folder structure of a GitHub repository without needing to clone the entire content.
 
-It's perfect for quickly creating custom wordlists for fuzzing open-source apps or plugins, helping you identify which endpoints in the default repository are accessible.
-
 ![gitpaths demo screenshot](demo.png)
+
+💡 Ideal for quickly creating custom wordlists for fuzzing open-source apps or plugins, helping you identify which endpoints in the default repository are accessible. Check out the [sample workflow](#sample-workflow).
 
 ## Features
 
-- Fetches file paths from a repository using the GitHub API.
-- No API key required.
-- Supports specifying a branch within the target repository.
-- Minimal dependencies and lightweight.
+- Fetches file paths from a repository using the GitHub API. 🔭
+- Supports specifying a branch within the target repository. 🎯
+- Minimal dependencies and lightweight. 🪶
 - Blazing fast! 🚀
 
 ## Installation
 
-`gitpaths` requires Go 1.23 or later to install successfully. Simply run the following command to get it:
+`gitpaths` requires Go 1.21 or later to install successfully. Simply run the following command to get it:
 
-```shell
+```bash
 go install -v github.com/mllamazares/gitpaths@latest
 ```
 
 ## Usage
 
-```
+```bash
 gitpaths -h
 ```
 
@@ -38,27 +37,28 @@ This will display help for the tool. Here are all the parameters it supports:
 
 ```
 Usage of gitpaths:
+  -u string
+    	GitHub repository URL
   -b string
     	Branch name (optional) (default "master")
-  -h	Display help
   -o string
     	Output file (optional)
   -silent
-    	Omit banner and sysout printing
-  -u string
-    	GitHub repository URL
+    	Omit sysout printing
+  -h	Display help
 ```
 
-### Examples
+### Sample Workflow
 
-To create a wordlist, run the following command:
+1. Use a tool like [Wappalyzer](https://www.wappalyzer.com/), [httpx](https://github.com/projectdiscovery/httpx), [nuclei](https://github.com/projectdiscovery/nuclei), or [whatweb](https://github.com/urbanadventurer/WhatWeb) to detect the tech stack of a given endpoint, such as a web app or WordPress plugin.
+2. Search for the corresponding GitHub repository and branch (if applicable) using Google.
+3. Create a custom wordlist with the command: `gitpaths -u https://github.com/example/plugin -b version2.1.23 -o plugin_wordlist.txt`.
+4. Finally, use your favorite fuzzing tool with that wordlist to test which endpoints are reachable on your target: `ffuf -u https://target.com/FUZZ -w plugin_wordlist.txt`.
 
-```
-gitpaths -u https://github.com/example/plugin -o plugin_wordlist.txt
-```
+## TODO
+- [ ] Auto-detect technology and GitHub repo.
+- [ ] Accept GitHub token to avoid rate limiting so it can be run at scale. 
+- [ ] Mix with `ffuf` for an end-to-end fuzzing experience.
+- [ ] Clean and refactor code.
 
-You can then use that wordlist to test which endpoints are reachable on your target:
-
-```
-ffuf -u https://supersecret.com/FUZZ -w plugin_wordlist.txt
-```
+Feel free to send a PR! 
