@@ -48,10 +48,10 @@ Usage of gitpaths:
 
 ### Sample Workflow
 
-1. Use a tool like [Wappalyzer](https://www.wappalyzer.com/), [httpx](https://github.com/projectdiscovery/httpx), [nuclei](https://github.com/projectdiscovery/nuclei), or [whatweb](https://github.com/urbanadventurer/WhatWeb) to detect the tech stack of a given endpoint, such as a web app or WordPress plugin.
-2. Search for the corresponding GitHub repository and branch (if applicable) using Google.
-3. Create a custom wordlist with the command: `gitpaths -u https://github.com/example/plugin -b version2.1.23 -o plugin_wordlist.txt`.
-4. Finally, use your favorite fuzzing tool with that wordlist to test which endpoints are reachable on your target: `ffuf -u https://target.com/FUZZ -w plugin_wordlist.txt`.
+1. Use a tool like Wappalyzer, httpx, nuclei, or whatweb to detect the specific tech stack of the target endpoint, such as a CRM, CMS, or WordPress plugin.
+2. Google the corresponding GitHub repository (and specific branch, if applicable).
+3. Create a custom wordlist: `gitpaths -u https://github.com/example/pluginXYZ -b version2.1.23 -o pluginXYZ_wordlist.txt`
+4. Finally, use your favorite fuzzing tool with that wordlist to test which endpoints are reachable on your target: `ffuf -u https://target.com/plugins/FUZZ -w pluginXYZ_wordlist.txt`
 
 ## TODO
 - [ ] Auto-detect technology and GitHub repo.
@@ -59,4 +59,4 @@ Usage of gitpaths:
 - [ ] Mix with `ffuf` for an end-to-end fuzzing experience.
 - [ ] Clean and refactor code.
 
-Feel free to send a PR! 
+Feel free to send a PR! 🙌
