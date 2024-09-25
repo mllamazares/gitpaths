@@ -8,6 +8,7 @@ import (
 	"os"
 	"strings"
 )
+
 const yellow = "\033[33m"
 const reset = "\033[0m"
 
@@ -33,13 +34,16 @@ type ApiResponse struct {
 func main() {
 	repoUrl := flag.String("u", "", "GitHub repository URL")
 	outputFile := flag.String("o", "", "Output file (optional)")
-	branch := flag.String("b", "master", "Branch name (optional)")
+	branch := flag.String("b", "main", "Branch name (default: main)")
 	silent := flag.Bool("silent", false, "Omit banner and sysout printing")
 	help := flag.Bool("help", false, "Display help")
 
 	flag.Parse()
 
-	fmt.Print(banner)
+	// Display banner if not in silent mode
+	if !*silent {
+		fmt.Print(banner)
+	}
 
 	// Display help if -h is provided
 	if *help {
@@ -74,7 +78,7 @@ func main() {
 	defer resp.Body.Close()
 
 	if resp.StatusCode != http.StatusOK {
-		fmt.Printf("Failed to retrieve data: %s\n", resp.Status)
+		fmt.Printf("Failed to retrieve data: %s\nVerify that the branch you want to retrieve is %s. If not, specify it with -b", resp.Status, *branch)
 		os.Exit(1)
 	}
 
